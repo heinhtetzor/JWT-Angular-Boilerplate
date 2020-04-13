@@ -1,0 +1,31 @@
+<div class="row mt-4">
+    <div class="col-md-12 centered-box">
+        <h2>
+            Active Sessions
+            <button (click)="onClickLogout()" class="btn btn-danger" style="float: right;">Logout</button>
+        </h2>
+        <table class="table table-hover table-responsive"> 
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>Revoke</th>
+                    <th>Expires at</th>
+                    <th>Refresh Token</th>
+                </tr>
+            </thead>
+            <tbody>
+                
+                <ng-container *ngFor="let session of sessions; index as i">
+                    <tr [ngClass]="{ 'bg-success text-white' : session.token == currentSession }">
+                        <td>{{ i+1 }}</td>
+                        <td>
+                            <button class="btn btn-sm btn-danger">X</button>
+                        </td>
+                        <td>{{ session.expiresAt*1000 | date  }}</td>
+                        <td>{{ session.token }}</td>
+                    </tr>
+                </ng-container>
+            </tbody>
+        </table>
+    </div>
+</div>
